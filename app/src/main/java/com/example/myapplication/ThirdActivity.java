@@ -34,5 +34,14 @@ public class ThirdActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Button button6= findViewById(R.id.button_6);
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ThirdActivity.this,EditTextActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
