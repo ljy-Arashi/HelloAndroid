@@ -10,4 +10,12 @@
         android:text="Button 3"
         />
 
+    <Button
+        android:id="@+id/button_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="向上个活动传值"
+        android:background="@drawable/bg_btn3"
+        android:layout_marginTop="10dp"
+        />
 </LinearLayout>

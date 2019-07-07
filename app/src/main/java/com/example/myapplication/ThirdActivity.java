@@ -23,5 +23,16 @@ public class ThirdActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button button5= findViewById(R.id.button_5);
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent IntentSec = new Intent();
+                IntentSec.putExtra("dataReturn","Hello SecondActivity");
+                setResult(RESULT_OK,IntentSec);
+                finish();
+            }
+        });
     }
 }
