@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication.listview.ListViewActivity;
+
 public class ThirdActivity extends AppCompatActivity {
     private Button bt_call;
     private Button bt_up;
@@ -16,6 +18,7 @@ public class ThirdActivity extends AppCompatActivity {
     private Button bt_RadioBt;
     private Button bt_CheckBox;
     private Button bt_imageView;
+    private Button bt_listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +29,7 @@ public class ThirdActivity extends AppCompatActivity {
          bt_RadioBt=findViewById(R.id.button_radio);
          bt_CheckBox=findViewById(R.id.button_checkBox);
          bt_imageView=findViewById(R.id.button_imageview);
+        bt_listView=findViewById(R.id.button_listview);
         SetListenner();
    }
    private void SetListenner()
@@ -37,6 +41,7 @@ public class ThirdActivity extends AppCompatActivity {
        bt_RadioBt.setOnClickListener(onClick);
        bt_CheckBox.setOnClickListener(onClick);
        bt_imageView.setOnClickListener(onClick);
+       bt_listView.setOnClickListener(onClick);
    }
     private class OnClick implements View.OnClickListener
     {
@@ -70,6 +75,10 @@ public class ThirdActivity extends AppCompatActivity {
                     break;
                 case R.id.button_imageview:
                     intent = new Intent(ThirdActivity.this,ImageViewActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_listview:
+                    intent = new Intent(ThirdActivity.this, ListViewActivity.class);
                     startActivity(intent);
                     break;
             }
