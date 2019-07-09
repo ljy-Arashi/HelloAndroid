@@ -37,4 +37,22 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/bg_btn4"
         />
+    <Button
+        android:id="@+id/button_checkBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CheckBox"
+        android:textColor="#ffffff"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn4"
+        />
+    <Button
+        android:id="@+id/button_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ImageView"
+        android:textColor="#ffffff"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn4"
+        />
 </LinearLayout>

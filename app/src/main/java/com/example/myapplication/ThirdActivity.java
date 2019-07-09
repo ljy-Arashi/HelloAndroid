@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ public class ThirdActivity extends AppCompatActivity {
     private Button bt_up;
     private Button bt_EditText;
     private Button bt_RadioBt;
+    private Button bt_CheckBox;
+    private Button bt_imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +24,8 @@ public class ThirdActivity extends AppCompatActivity {
          bt_up= findViewById(R.id.button_5);
          bt_EditText= findViewById(R.id.button_6);
          bt_RadioBt=findViewById(R.id.button_radio);
+         bt_CheckBox=findViewById(R.id.button_checkBox);
+         bt_imageView=findViewById(R.id.button_imageview);
         SetListenner();
    }
    private void SetListenner()
@@ -30,6 +35,8 @@ public class ThirdActivity extends AppCompatActivity {
        bt_up.setOnClickListener(onClick);
        bt_EditText.setOnClickListener(onClick);
        bt_RadioBt.setOnClickListener(onClick);
+       bt_CheckBox.setOnClickListener(onClick);
+       bt_imageView.setOnClickListener(onClick);
    }
     private class OnClick implements View.OnClickListener
     {
@@ -55,6 +62,14 @@ public class ThirdActivity extends AppCompatActivity {
                     break;
                 case R.id.button_radio:
                     intent = new Intent(ThirdActivity.this,RadioButtonActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_checkBox:
+                    intent = new Intent(ThirdActivity.this,CheckBoxActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_imageview:
+                    intent = new Intent(ThirdActivity.this,ImageViewActivity.class);
                     startActivity(intent);
                     break;
             }
