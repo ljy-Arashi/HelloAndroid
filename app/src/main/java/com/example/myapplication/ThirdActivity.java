@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.example.myapplication.gridview.GridViewActivity;
 import com.example.myapplication.listview.ListViewActivity;
+import com.example.myapplication.recyclerview.RecyclerViewActivity;
 
 public class ThirdActivity extends AppCompatActivity {
     private Button bt_call;
@@ -21,6 +22,7 @@ public class ThirdActivity extends AppCompatActivity {
     private Button bt_imageView;
     private Button bt_listView;
     private Button bt_gridView;
+    private Button bt_recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,7 @@ public class ThirdActivity extends AppCompatActivity {
          bt_imageView=findViewById(R.id.button_imageview);
         bt_listView=findViewById(R.id.button_listview);
         bt_gridView=findViewById(R.id.button_gridview);
+        bt_recyclerView=findViewById(R.id.button_recyclerView);
         SetListenner();
    }
    private void SetListenner()
@@ -46,6 +49,7 @@ public class ThirdActivity extends AppCompatActivity {
        bt_imageView.setOnClickListener(onClick);
        bt_listView.setOnClickListener(onClick);
        bt_gridView.setOnClickListener(onClick);
+       bt_recyclerView.setOnClickListener(onClick);
    }
     private class OnClick implements View.OnClickListener
     {
@@ -87,6 +91,10 @@ public class ThirdActivity extends AppCompatActivity {
                     break;
                 case R.id.button_gridview:
                     intent = new Intent(ThirdActivity.this, GridViewActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_recyclerView:
+                    intent = new Intent(ThirdActivity.this, RecyclerViewActivity.class);
                     startActivity(intent);
                     break;
             }
