@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication.gridview.GridViewActivity;
 import com.example.myapplication.listview.ListViewActivity;
 
 public class ThirdActivity extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class ThirdActivity extends AppCompatActivity {
     private Button bt_CheckBox;
     private Button bt_imageView;
     private Button bt_listView;
+    private Button bt_gridView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,7 @@ public class ThirdActivity extends AppCompatActivity {
          bt_CheckBox=findViewById(R.id.button_checkBox);
          bt_imageView=findViewById(R.id.button_imageview);
         bt_listView=findViewById(R.id.button_listview);
+        bt_gridView=findViewById(R.id.button_gridview);
         SetListenner();
    }
    private void SetListenner()
@@ -42,6 +45,7 @@ public class ThirdActivity extends AppCompatActivity {
        bt_CheckBox.setOnClickListener(onClick);
        bt_imageView.setOnClickListener(onClick);
        bt_listView.setOnClickListener(onClick);
+       bt_gridView.setOnClickListener(onClick);
    }
     private class OnClick implements View.OnClickListener
     {
@@ -79,6 +83,10 @@ public class ThirdActivity extends AppCompatActivity {
                     break;
                 case R.id.button_listview:
                     intent = new Intent(ThirdActivity.this, ListViewActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_gridview:
+                    intent = new Intent(ThirdActivity.this, GridViewActivity.class);
                     startActivity(intent);
                     break;
             }

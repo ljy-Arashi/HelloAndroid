@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ImageViewActivity"></activity>
         <activity android:name="com.example.myapplication.listview.ListViewActivity" ></activity>
+        <activity android:name="com.example.myapplication.gridview.GridViewActivity"></activity>
         <activity android:name=".CheckBoxActivity" />
         <activity android:name=".RadioButtonActivity" />
         <activity android:name=".EditTextActivity" />
