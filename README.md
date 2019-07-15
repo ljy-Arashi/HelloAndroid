@@ -1,2 +1,2 @@
 # HelloAndroid version1.0
-Android learning process by ljy
+Android learning process 
