@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 
 
-public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearViewHolder> {
+public class GridAdapter extends RecyclerView.Adapter<GridAdapter.LinearViewHolder> {
 
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener monItemLongClickListener;
 
     //private List<String> mlist;实际开发应该传个什么列表
-    public  LinearAdapter(Context context,OnItemClickListener onItemClickListener,OnItemLongClickListener onItemLongClickListener)
+    public GridAdapter(Context context, OnItemClickListener onItemClickListener, OnItemLongClickListener onItemLongClickListener)
     {
         this.mContext=context;
         this.mOnItemClickListener=onItemClickListener;
@@ -27,15 +27,15 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearView
 
     }
     @Override
-    public LinearAdapter.LinearViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public GridAdapter.LinearViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //传入每个Item布局
-        return new LinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.layout_linear_item, parent,false));
+        return new LinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.layout_gridrecyclerview_item, parent,false));
 
     }
 
     @Override
-    public void onBindViewHolder(LinearAdapter.LinearViewHolder holder, final int position) {
-        holder.textView.setText("Hello World! RecyclerView");
+    public void onBindViewHolder(GridAdapter.LinearViewHolder holder, final int position) {
+        holder.textView.setText("Hello GridRecyclerView");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +54,7 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearView
 
     @Override
     public int getItemCount() {
-        return 30;//实际中应该是mlist的长度
+        return 60;//实际中应该是mlist的长度
     }
 
     public static class LinearViewHolder extends RecyclerView.ViewHolder{
