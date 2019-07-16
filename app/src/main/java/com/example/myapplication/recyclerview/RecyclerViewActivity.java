@@ -11,7 +11,7 @@ import com.example.myapplication.R;
 
 public class RecyclerViewActivity extends AppCompatActivity {
 
-    private Button mBtnLinear,mBtnHorizen,mBtnGrid;
+    private Button mBtnLinear,mBtnHorizen,mBtnGrid,mBtnPu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +19,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         mBtnLinear=findViewById(R.id.btn_linear);
         mBtnHorizen=findViewById(R.id.btn_horizon);
         mBtnGrid=findViewById(R.id.btn_grid);
+        mBtnPu=findViewById(R.id.btn_pu);
         mBtnLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,6 +39,13 @@ public class RecyclerViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(RecyclerViewActivity.this,GridRecyclerViewActivity.class);
+                startActivity(intent);
+            }
+        });
+        mBtnPu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(RecyclerViewActivity.this,PuRecyclerViewActivity.class);
                 startActivity(intent);
             }
         });

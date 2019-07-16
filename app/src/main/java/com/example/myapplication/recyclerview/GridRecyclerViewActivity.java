@@ -43,7 +43,8 @@ public class GridRecyclerViewActivity extends AppCompatActivity {
             super.getItemOffsets(outRect, view, parent, state);
             //每个元素下面添加了一个自定义的1dp分割线 用的颜色就是activity_linear_recycler_view.xml背景色
             //顺序：左上右下
-            outRect.set(getResources().getDimensionPixelOffset(R.dimen.dividerHeight),getResources().getDimensionPixelOffset(R.dimen.dividerHeight),getResources().getDimensionPixelOffset(R.dimen.dividerHeight),getResources().getDimensionPixelOffset(R.dimen.dividerHeight));
+            int dh=getResources().getDimensionPixelOffset(R.dimen.dividerHeight);
+            outRect.set(dh,dh,dh,dh);
         }
     }
 }

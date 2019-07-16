@@ -2,4 +2,5 @@
 <resources>
     <!--分割线-->
     <dimen name="dividerHeight">1dp</dimen>
+    <dimen name="dividerHeight2">4dp</dimen>
 </resources>
