@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".recyclerview.PuRecyclerViewActivity"></activity>
+        <activity android:name=".WebViewActivity"></activity>
+        <activity android:name=".recyclerview.PuRecyclerViewActivity" />
         <activity android:name=".recyclerview.GridRecyclerViewActivity" />
         <activity android:name=".recyclerview.HorizonRecyclerViewActivity" />
         <activity android:name=".recyclerview.LinearRecyclerViewActivity" />
