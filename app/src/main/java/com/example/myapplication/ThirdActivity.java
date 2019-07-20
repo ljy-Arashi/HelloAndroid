@@ -23,7 +23,7 @@ public class ThirdActivity extends AppCompatActivity {
     private Button bt_listView;
     private Button bt_gridView;
     private Button bt_recyclerView;
-    private Button bt_webView;
+    private Button bt_webView,bt_toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class ThirdActivity extends AppCompatActivity {
         bt_gridView=findViewById(R.id.button_gridview);
         bt_recyclerView=findViewById(R.id.button_recyclerView);
         bt_webView=findViewById(R.id.button_webView);
+        bt_toast=findViewById(R.id.button_Toast);
         SetListenner();
    }
    private void SetListenner()
@@ -54,6 +55,7 @@ public class ThirdActivity extends AppCompatActivity {
        bt_gridView.setOnClickListener(onClick);
        bt_recyclerView.setOnClickListener(onClick);
        bt_webView.setOnClickListener(onClick);
+       bt_toast.setOnClickListener(onClick);
    }
     private class OnClick implements View.OnClickListener
     {
@@ -103,6 +105,10 @@ public class ThirdActivity extends AppCompatActivity {
                     break;
                 case R.id.button_webView:
                     intent = new Intent(ThirdActivity.this, WebViewActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_Toast:
+                    intent = new Intent(ThirdActivity.this, ToastActivity.class);
                     startActivity(intent);
                     break;
             }
