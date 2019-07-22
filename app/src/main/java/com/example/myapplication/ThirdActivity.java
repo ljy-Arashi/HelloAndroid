@@ -23,7 +23,7 @@ public class ThirdActivity extends AppCompatActivity {
     private Button bt_listView;
     private Button bt_gridView;
     private Button bt_recyclerView;
-    private Button bt_webView,bt_toast,bt_alertDialog;
+    private Button bt_webView,bt_toast,bt_alertDialog,bt_progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class ThirdActivity extends AppCompatActivity {
         bt_webView=findViewById(R.id.button_webView);
         bt_toast=findViewById(R.id.button_Toast);
         bt_alertDialog=findViewById(R.id.button_Alert);
+        bt_progress=findViewById(R.id.button_ProgressBar);
         SetListenner();
    }
    private void SetListenner()
@@ -58,6 +59,7 @@ public class ThirdActivity extends AppCompatActivity {
        bt_webView.setOnClickListener(onClick);
        bt_toast.setOnClickListener(onClick);
        bt_alertDialog.setOnClickListener(onClick);
+       bt_progress.setOnClickListener(onClick);
    }
     private class OnClick implements View.OnClickListener
     {
@@ -115,6 +117,10 @@ public class ThirdActivity extends AppCompatActivity {
                     break;
                 case R.id.button_Alert:
                     intent = new Intent(ThirdActivity.this, AlertDialogActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_ProgressBar:
+                    intent = new Intent(ThirdActivity.this, ProgressBarActivity.class);
                     startActivity(intent);
                     break;
             }
