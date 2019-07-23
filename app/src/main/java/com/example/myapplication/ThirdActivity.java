@@ -1,8 +1,6 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,7 +21,7 @@ public class ThirdActivity extends AppCompatActivity {
     private Button bt_listView;
     private Button bt_gridView;
     private Button bt_recyclerView;
-    private Button bt_webView,bt_toast,bt_alertDialog,bt_progress;
+    private Button bt_webView,bt_toast,bt_alertDialog,bt_progress,bt_customDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +40,7 @@ public class ThirdActivity extends AppCompatActivity {
         bt_toast=findViewById(R.id.button_Toast);
         bt_alertDialog=findViewById(R.id.button_Alert);
         bt_progress=findViewById(R.id.button_ProgressBar);
+        bt_customDialog=findViewById(R.id.button_CustomerDialog);
         SetListenner();
    }
    private void SetListenner()
@@ -60,6 +59,7 @@ public class ThirdActivity extends AppCompatActivity {
        bt_toast.setOnClickListener(onClick);
        bt_alertDialog.setOnClickListener(onClick);
        bt_progress.setOnClickListener(onClick);
+       bt_customDialog.setOnClickListener(onClick);
    }
     private class OnClick implements View.OnClickListener
     {
@@ -121,6 +121,10 @@ public class ThirdActivity extends AppCompatActivity {
                     break;
                 case R.id.button_ProgressBar:
                     intent = new Intent(ThirdActivity.this, ProgressBarActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_CustomerDialog:
+                    intent = new Intent(ThirdActivity.this, CustomerDialogActivity.class);
                     startActivity(intent);
                     break;
             }
