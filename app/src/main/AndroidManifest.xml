@@ -12,7 +12,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PopUpActivity"></activity>
+        <activity android:name=".jump.BActivity">
+            <intent-filter>
+                <action android:name="com.ljy.test.BActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+            </intent-filter>
+        </activity>
+        <activity android:name=".jump.AActivity" />
+        <activity android:name=".PopUpActivity" />
         <activity android:name=".CustomerDialogActivity" />
         <activity android:name=".ProgressBarActivity" />
         <activity android:name=".AlertDialogActivity" />

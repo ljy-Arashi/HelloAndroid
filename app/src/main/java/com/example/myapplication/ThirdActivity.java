@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.myapplication.gridview.GridViewActivity;
+import com.example.myapplication.jump.AActivity;
 import com.example.myapplication.listview.ListViewActivity;
 import com.example.myapplication.recyclerview.RecyclerViewActivity;
 
@@ -21,7 +22,7 @@ public class ThirdActivity extends AppCompatActivity {
     private Button bt_listView;
     private Button bt_gridView;
     private Button bt_recyclerView;
-    private Button bt_webView,bt_toast,bt_alertDialog,bt_progress,bt_customDialog,bt_popUp;
+    private Button bt_webView,bt_toast,bt_alertDialog,bt_progress,bt_customDialog,bt_popUp,bt_jump;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class ThirdActivity extends AppCompatActivity {
         bt_progress=findViewById(R.id.button_ProgressBar);
         bt_customDialog=findViewById(R.id.button_CustomerDialog);
         bt_popUp=findViewById(R.id.button_PopUp);
+        bt_jump=findViewById(R.id.button_jump);
         SetListenner();
    }
    private void SetListenner()
@@ -62,6 +64,7 @@ public class ThirdActivity extends AppCompatActivity {
        bt_progress.setOnClickListener(onClick);
        bt_customDialog.setOnClickListener(onClick);
        bt_popUp.setOnClickListener(onClick);
+       bt_jump.setOnClickListener(onClick);
    }
     private class OnClick implements View.OnClickListener
     {
@@ -131,6 +134,10 @@ public class ThirdActivity extends AppCompatActivity {
                     break;
                 case R.id.button_PopUp:
                     intent = new Intent(ThirdActivity.this, PopUpActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_jump:
+                    intent = new Intent(ThirdActivity.this, AActivity.class);
                     startActivity(intent);
                     break;
             }
