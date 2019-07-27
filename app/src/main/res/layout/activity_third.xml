@@ -146,5 +146,14 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_btn4"
             />
+        <Button
+            android:id="@+id/button_Fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fragment"
+            android:textColor="#ffffff"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn4"
+            />
     </LinearLayout>
 </ScrollView>

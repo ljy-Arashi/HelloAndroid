@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="20sp">
 
     <Button
@@ -9,4 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="跳转"/>
+
+    <Button
+        android:id="@+id/btn_jumpGo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="A跳转到AActivity"
+        android:layout_marginTop="20sp"/>
+
 </LinearLayout>

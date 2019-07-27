@@ -10,6 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="跳转结束返回"/>
+
+    <Button
+        android:id="@+id/btn_jumpbackTo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转返回AActivity"/>
+
     <TextView
         android:id="@+id/tv_jumpback"
         android:layout_width="wrap_content"
@@ -17,4 +24,5 @@
         android:textColor="@color/colorBlack"
        android:layout_marginTop="20sp"
         android:textSize="20sp"/>
+
 </LinearLayout>
