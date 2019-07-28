@@ -22,16 +22,16 @@ public class ContainerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (bFragment==null) {
-                bFragment=new BFragment();
+                bFragment = new BFragment();
                 }
                 //这里更换用replace
                 getSupportFragmentManager().beginTransaction().replace(R.id.fl_container,bFragment).commitAllowingStateLoss();
             }
         });
         //实例化AFragment
-        aFragment=new AFragment();
+        aFragment =  AFragment.newInstance("我是参数");
         //把AFragment添加到Activity中  commitAllowingStateLoss比 commit宽容些不容易出错
         getSupportFragmentManager().beginTransaction().add(R.id.fl_container,aFragment).commitAllowingStateLoss();
-
     }
+
 }
