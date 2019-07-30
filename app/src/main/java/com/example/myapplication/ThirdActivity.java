@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.myapplication.fragment.AFragment;
 import com.example.myapplication.fragment.ContainerActivity;
 import com.example.myapplication.gridview.GridViewActivity;
 import com.example.myapplication.jump.AActivity;
