@@ -32,6 +32,21 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
                 return false;//如果return true 回调里面的事件就不会被触发
             }
         });
+
+        btnMyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Listener","-----onClick---");
+            }
+        });
+
+        btnMyButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                return false;//这里如果是true则不会继续执行setOnClickListener
+                //              否则，执行完setOnLongClickListener后会继续执行setOnClickListener
+            }
+        });
 //        //内部类实现
 //        mBtnEvent.setOnClickListener(new OnClick());
 //        //匿名内部类
