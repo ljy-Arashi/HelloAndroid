@@ -11,4 +11,10 @@
         android:text="click me"
         android:textAllCaps="false"
         android:onClick="ClickShow"/>
+    <com.example.myapplication.MyButton
+        android:id="@+id/btn_myButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="my button"
+        android:textAllCaps="false" />
 </LinearLayout>

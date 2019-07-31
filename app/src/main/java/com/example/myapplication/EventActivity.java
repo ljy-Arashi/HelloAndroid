@@ -3,6 +3,8 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -11,11 +13,25 @@ import com.example.myapplication.util.ToastUtil;
 public class EventActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button mBtnEvent;
+    private MyButton btnMyButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
         mBtnEvent=findViewById(R.id.btn_event);
+        btnMyButton=findViewById(R.id.btn_myButton);
+        //监听优先于回调里面的回调方法onTouchEvent
+        btnMyButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        Log.d("Listener","-----onTouch---");
+                        break;
+                }
+                return false;//如果return true 回调里面的事件就不会被触发
+            }
+        });
 //        //内部类实现
 //        mBtnEvent.setOnClickListener(new OnClick());
 //        //匿名内部类
@@ -60,5 +76,17 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
                     break;
             }
         }
+    }
+
+    //回调方法
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        super.onTouchEvent(event);
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                Log.d("EventActivity","-----onTouchEvent---");
+                break;
+        }
+        return false;
     }
 }
