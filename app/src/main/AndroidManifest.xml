@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EventActivity"></activity>
+        <activity android:name=".HandlerActivity"></activity>
+        <activity android:name=".EventActivity" />
         <activity android:name=".fragment.ContainerActivity" />
         <activity android:name=".jump.BActivity">
             <intent-filter>
