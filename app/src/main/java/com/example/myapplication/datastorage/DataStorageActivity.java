@@ -1,7 +1,10 @@
 package com.example.myapplication.datastorage;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +23,9 @@ public class DataStorageActivity extends AppCompatActivity implements View.OnCli
         mBtnSharedPreference.setOnClickListener(this);
         mBtnFile=findViewById(R.id.btn_file);
         mBtnFile.setOnClickListener(this);
+
+        //申请存储的权限
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
     }
 
     @Override
