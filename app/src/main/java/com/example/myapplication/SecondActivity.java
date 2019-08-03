@@ -11,10 +11,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.datastorage.DataStorageActivity;
+
 
 public class SecondActivity extends AppCompatActivity {
 
-    private Button mBtn_web,mBtn_ui,mBtn_Ev;
+    private Button mBtn_web,mBtn_ui,mBtn_Ev,mBtn_DataStorage;
     private TextView mTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class SecondActivity extends AppCompatActivity {
         mTv.append(","+data);
         mBtn_ui= findViewById(R.id.button_ui);
         mBtn_Ev=findViewById(R.id.button_ev);
+        mBtn_DataStorage=findViewById(R.id.button_data);
         SetListenner();
 
     }
@@ -36,6 +39,7 @@ public class SecondActivity extends AppCompatActivity {
         mBtn_web.setOnClickListener(onClick);
         mBtn_ui.setOnClickListener(onClick);
         mBtn_Ev.setOnClickListener(onClick);
+        mBtn_DataStorage.setOnClickListener(onClick);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -72,6 +76,10 @@ public class SecondActivity extends AppCompatActivity {
                     break;
                 case R.id.button_ev:
                     intent = new Intent(SecondActivity.this,EventActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_data:
+                    intent = new Intent(SecondActivity.this, DataStorageActivity.class);
                     startActivity(intent);
                     break;
             }
