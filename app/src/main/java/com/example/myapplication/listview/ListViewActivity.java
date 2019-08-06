@@ -29,7 +29,7 @@ public class ListViewActivity extends Activity {
         mLv1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(ListViewActivity.this,"长按position:"+i,Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListViewActivity.this,"长按position:"+i,Toast.LENGTH_LONG).show();
                 return true;//处理完了 其他按压别处理了
             }
         });

@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".imageload.UniversalImgLoaderActivity"></activity>
+        <activity android:name=".picasso.PicassoListViewActivity"></activity>
+        <activity android:name=".imageload.UniversalImgLoaderActivity" />
         <activity android:name=".datastorage.FileActivity" />
         <activity android:name=".datastorage.SharedPreferencesActivity" />
         <activity android:name=".datastorage.DataStorageActivity" />

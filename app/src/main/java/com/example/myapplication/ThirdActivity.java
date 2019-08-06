@@ -12,6 +12,7 @@ import com.example.myapplication.gridview.GridViewActivity;
 import com.example.myapplication.imageload.UniversalImgLoaderActivity;
 import com.example.myapplication.jump.AActivity;
 import com.example.myapplication.listview.ListViewActivity;
+import com.example.myapplication.picasso.PicassoListViewActivity;
 import com.example.myapplication.recyclerview.RecyclerViewActivity;
 
 public class ThirdActivity extends AppCompatActivity {
@@ -25,7 +26,7 @@ public class ThirdActivity extends AppCompatActivity {
     private Button bt_gridView;
     private Button bt_recyclerView;
     private Button bt_webView,bt_toast,bt_alertDialog,bt_progress,bt_customDialog,bt_popUp,bt_jump,bt_fragment;
-    private Button bt_imageLoad;
+    private Button bt_imageLoad,bt_Picasso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class ThirdActivity extends AppCompatActivity {
         bt_jump=findViewById(R.id.button_jump);
         bt_fragment=findViewById(R.id.button_Fragment);
         bt_imageLoad=findViewById(R.id.button_imageLoad);
+        bt_Picasso=findViewById(R.id.button_Picasso);
         SetListenner();
    }
    private void SetListenner()
@@ -72,6 +74,7 @@ public class ThirdActivity extends AppCompatActivity {
        bt_jump.setOnClickListener(onClick);
        bt_fragment.setOnClickListener(onClick);
        bt_imageLoad.setOnClickListener(onClick);
+       bt_Picasso.setOnClickListener(onClick);
    }
     private class OnClick implements View.OnClickListener
     {
@@ -153,6 +156,10 @@ public class ThirdActivity extends AppCompatActivity {
                     break;
                 case R.id.button_imageLoad:
                     intent = new Intent(ThirdActivity.this, UniversalImgLoaderActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_Picasso:
+                    intent = new Intent(ThirdActivity.this, PicassoListViewActivity.class);
                     startActivity(intent);
                     break;
             }

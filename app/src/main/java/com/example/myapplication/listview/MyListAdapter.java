@@ -63,6 +63,7 @@ public class MyListAdapter extends BaseAdapter {
         holder.tvTitle.setText("这是标题");
         holder.tvTime.setText("2088-08-08");
         holder.tvContent.setText("这是内容改");
+        //Glide图片加载方法 类似Picasso
         Glide.with(context).load("https://c-ssl.duitang.com/uploads/item/201509/25/20150925142325_yF8Tr.jpeg").into(holder.imageView);
         return view;
     }

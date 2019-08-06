@@ -165,5 +165,15 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_btn4"
             />
+        <Button
+            android:id="@+id/button_Picasso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Picasso"
+            android:textColor="#ffffff"
+            android:textAllCaps="false"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn4"
+            />
     </LinearLayout>
 </ScrollView>
