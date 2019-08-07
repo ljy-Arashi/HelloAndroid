@@ -43,7 +43,7 @@ public class UniversalImgLoaderActivity extends AppCompatActivity {
                 .displayer(new RoundedBitmapDisplayer(20))//是否设置为圆角，弧度为多少
                 .displayer(new FadeInBitmapDisplayer(100))//是否图片加载好后渐入的动画时间
                 .build();
-        imageLoader.displayImage("https://s21s0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3660455785,1917099495&fm=26&gp=0.jpg", mIvLoad,options,null);
+        imageLoader.displayImage("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565197483219&di=3885629b6a047c4bd6c023604c6b3f30&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn%2Fw1200h767%2F20180218%2F8982-fyrswmu0108607.jpg", mIvLoad,options,null);
 //        imageLoader.displayImage("https://s1s0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3660455785,1917099495&fm=26&gp=0.jpg", mIvLoad, new ImageLoadingListener() {
 //            @Override
 //            public void onLoadingStarted(String imageUri, View view) {
