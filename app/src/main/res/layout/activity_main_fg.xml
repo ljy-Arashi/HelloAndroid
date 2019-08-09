@@ -7,6 +7,13 @@
     <fragment
         android:id="@+id/fg_event"
         android:name="com.example.myapplication.eventbus.LeftFragment"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+    <fragment
+        android:id="@+id/fg_eventRight"
+        android:name="com.example.myapplication.eventbus.RightFragment"
+        android:layout_width="0dp"
+        android:layout_weight="3"
         android:layout_height="match_parent"/>
 </LinearLayout>

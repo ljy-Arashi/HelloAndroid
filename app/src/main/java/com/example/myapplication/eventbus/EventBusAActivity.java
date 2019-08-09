@@ -44,7 +44,8 @@ public class EventBusAActivity extends AppCompatActivity {
         EventBus.getDefault().unregister(this);
     }
 
-    //3.0官方规定的名字   4个方法里的一个，会自动接收返回数据
+    //3.0前官方规定的名字，3.0后名字可以乱取，但是必须加上@subscribe，并且指定线程模型，默认是POSTING
+    // 4个方法里的一个，会自动接收返回数据
     /**
      * onEvent	事件处理在事件发送的那个线程执行	PostThread
      * onEventMainThread	事件在主线程-UI线程执行	MainThread
