@@ -10,9 +10,26 @@
         android:onClick="doGet"
         android:textAllCaps="false"
         android:text="Get"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="doPost"
+        android:textAllCaps="false"
+        android:text="Post"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="doDownLoad"
+        android:textAllCaps="false"
+        android:text="Download"/>
     <TextView
         android:id="@+id/tv_http_get"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"/>
+    <ImageView
+        android:id="@+id/iv_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"/>
 </LinearLayout>

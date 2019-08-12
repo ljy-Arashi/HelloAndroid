@@ -1,41 +1,98 @@
 package com.example.myapplication.okhttp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
+import com.example.myapplication.util.ToastUtil;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class OKHttpActivity extends AppCompatActivity {
 
     private TextView mTv_get;
+    private  OkHttpClient okHttpClient;
+    private ImageView mIv_downLoad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_okhttp);
         mTv_get=findViewById(R.id.tv_http_get);
+        mIv_downLoad=findViewById(R.id.iv_download);
+        ////1.拿到OkHttpClient对象
+        okHttpClient=new OkHttpClient();
     }
 
+    public void doDownLoad(View view){
+        Request builder=new Request.Builder()
+                .get()
+                .url("xxxxxxx")//没有模拟的服务器
+                .build();
+        Call call=okHttpClient.newCall(builder);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.d("downLoad  onFailure ",e.getMessage());
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+            InputStream inputStream=response.body().byteStream();
+            //直接加载图片到imageView里面
+                //注意 如果不知道图片大小 一定要压缩
+                final Bitmap bitmap= BitmapFactory.decodeStream(inputStream);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mIv_downLoad.setImageBitmap(bitmap);
+                    }
+                });
+            //下载图片
+//            int len=0;
+//            byte[] buf=new byte[200];
+//                File file=new File(Environment.getExternalStorageState(),"naruto.jpg");
+//                FileOutputStream fos=new FileOutputStream(file);
+//                while ((len=inputStream.read(buf))!=-1){
+//                    fos.write(buf,0,len);
+//                }
+//                fos.flush();
+//                fos.close();
+//                inputStream.close();
+//                ToastUtil.showMsg(OKHttpActivity.this,"downLoad success");
+
+            }
+        });
+    }
     //直接在布局里舍得button onClick事件
     public void doGet(View view) throws IOException {
         String url = "https://www.baidu.com/";//注意加入internet权限
         //1.拿到OkHttpClient对象
         //可以设置很多属性 timeout 错误后重新执行等等
-        OkHttpClient okHttpClient=new OkHttpClient();
+        //OkHttpClient okHttpClient=new OkHttpClient();  重量级应该放在全局 不要重新new
+
         //2.构造Request
         //request里面可以设置一些参数 header 通过tag cancel掉什么的
         final Request request=new Request.Builder()
@@ -77,5 +134,91 @@ public class OKHttpActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+//    public void doPost(View view){
+//        /**
+//         * POST请求（键值对 key-value）
+//         * 1.拿到okhttpClient对象
+//         * 2.创建 FormBody 添加需要的键值对
+//         * 3.构造Request
+//         * 4.创建一个Call对象
+//         * 5.异步请求enqueue(Callback)
+//         * 如果Post提交的数据是键值对就构造一个FormBody对象，可以添加N个键值对。*/
+//        //2.创建 FormBody 添加需要的键值对
+//        FormBody formBody = new FormBody.Builder()
+//                .add("username","ljy")
+//                .add("password","123")
+//                .build();
+//        // 3.构造Request
+//        Request.Builder builder = new Request.Builder();
+//        Request request = builder.url("http://www.xxxxx.com/user/login")
+//                .post(formBody)//键值对
+//                .build();
+//        //4.创建一个Call对象
+//        Call call = okHttpClient.newCall(request);
+//        //5.异步请求enqueue(Callback)
+//        call.enqueue(new Callback() {
+//            @Override
+//            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+//                Log.e("post_onFailure", "登录失败="+e.getMessage());
+//            }
+//
+//            @Override
+//            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+//                String json = response.body().string();
+//               // UserInfo userInfo = new Gson().fromJson(json,UserInfo.class);
+//               // if(userInfo!=null) {
+//                    //if(userInfo.getErrorCode()!=0) {
+//                       // Log.e("TAG", userInfo.getErrorMsg());
+//                   // }else {
+//                        //Log.e("TAG", "登录成功="+json);
+//                   // }
+//                //}
+//            }
+//        });
+//    }
+    public void doPost(View view){
+        /**POST请求（json字符串）
+         1.拿到okhttpClient对象
+         2.设置提交类型MediaType+json字符串
+         3.构造Request
+         4.创建一个Call对象
+         5.异步请求enqueue(Callback)*/
+        // 1.拿到okhttpClient对象 全局
+
+        //需要提交的json字符串
+        String jsonStr = "hahaha";
+        //2.创建 RequestBody 设置提交类型MediaType+json字符串
+        RequestBody requestBody =  RequestBody.create(MediaType.parse("application/json"),jsonStr);
+
+        // 3.构造Request
+        Request.Builder builder = new Request.Builder();
+        Request request = builder.url("http://xxxx.com/user/login")
+                .post(requestBody)//字符串
+                .build();
+
+        //4.创建一个Call对象
+        Call call = okHttpClient.newCall(request);
+        //5.异步请求enqueue(Callback)
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.d("post  onFailure ",e.getMessage());
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                String json = response.body().string();
+                //UserInfo userInfo = new Gson().fromJson(json,UserInfo.class);
+                //if(userInfo!=null) {
+                    //if(userInfo.getErrorCode()!=0) {
+                        //Log.e("TAG", userInfo.getErrorMsg());
+                  //  }else {
+                        //Log.e("TAG", "登录成功="+json);
+                   // }
+               // }
+            }
+        });
     }
 }
