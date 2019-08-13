@@ -21,10 +21,18 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
 import okhttp3.FormBody;
+import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -34,8 +42,10 @@ import okhttp3.Response;
 public class OKHttpActivity extends AppCompatActivity {
 
     private TextView mTv_get;
-    private  OkHttpClient okHttpClient;
+    OkHttpClient okHttpClient;
     private ImageView mIv_downLoad;
+    //cookie存储 OkHttp为我们提供了简便的管理方法，可自动携带，保存和更新Cookie信息
+    private ConcurrentHashMap<String, List<Cookie>> cookieStore = new ConcurrentHashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +53,48 @@ public class OKHttpActivity extends AppCompatActivity {
         mTv_get=findViewById(R.id.tv_http_get);
         mIv_downLoad=findViewById(R.id.iv_download);
         ////1.拿到OkHttpClient对象
-        okHttpClient=new OkHttpClient();
+        //设置超时和缓存 cookie
+        File sdcache = new File(Environment.getExternalStorageDirectory(), "cache");
+        int cacheSize = 10 * 1024 * 1024;
+
+        okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(15,TimeUnit.SECONDS)
+                .writeTimeout(20, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .cookieJar(new CookieJar() {
+                    @Override
+                    public void saveFromResponse(@NotNull HttpUrl httpUrl, @NotNull List<Cookie> list) {
+                        //可以做保存cookies操作
+                        System.out.println("cookies url: " + httpUrl.toString());
+//                        for (Cookie cookie : list)
+//                        {
+//                            System.out.println("cookies: " + cookie.toString());
+//                        }
+                        cookieStore.put(httpUrl.host(), list);
+                    }
+
+                    @NotNull
+                    @Override
+                    public List<Cookie> loadForRequest(@NotNull HttpUrl httpUrl) {
+                        //加载新的cookies
+                        ArrayList<Cookie> cookies = new ArrayList<>();
+                        Cookie cookie = new Cookie.Builder()
+                                .hostOnlyDomain(httpUrl.host())
+                                .name("SESSION").value("123")
+                                .build();
+                        cookies.add(cookie);
+                        return cookies;
+                    }
+                })
+                .cache(new Cache(sdcache.getAbsoluteFile(), cacheSize))
+                .build();
+
+
+
+
+        //保存sessionID Cookies
+        //okHttpClient.cookieJar().loadForRequest()
+        //okHttpClient.cookieJar().saveFromResponse();
     }
 
     public void doDownLoad(View view){
@@ -70,18 +121,32 @@ public class OKHttpActivity extends AppCompatActivity {
                         mIv_downLoad.setImageBitmap(bitmap);
                     }
                 });
+                //追踪进度
+                //1.拿到总长度
+                final long total=response.body().contentLength();
+                long sum=0L;
+
             //下载图片
-//            int len=0;
-//            byte[] buf=new byte[200];
-//                File file=new File(Environment.getExternalStorageState(),"naruto.jpg");
-//                FileOutputStream fos=new FileOutputStream(file);
-//                while ((len=inputStream.read(buf))!=-1){
-//                    fos.write(buf,0,len);
-//                }
-//                fos.flush();
-//                fos.close();
-//                inputStream.close();
-//                ToastUtil.showMsg(OKHttpActivity.this,"downLoad success");
+            int len=0;
+            byte[] buf=new byte[200];
+                File file=new File(Environment.getExternalStorageState(),"naruto.jpg");
+                FileOutputStream fos=new FileOutputStream(file);
+                while ((len=inputStream.read(buf))!=-1){
+                    fos.write(buf,0,len);
+                    sum+=len;
+                    final long finalSum=sum;
+                    //显示进度
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mTv_get.setText(finalSum+"/"+total);
+                        }
+                    });
+                }
+                fos.flush();
+                fos.close();
+                inputStream.close();
+                ToastUtil.showMsg(OKHttpActivity.this,"downLoad success");
 
             }
         });
