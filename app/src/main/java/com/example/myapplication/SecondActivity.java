@@ -12,12 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.datastorage.DataStorageActivity;
+import com.example.myapplication.materialDesign.MaterialDesignActivity;
 import com.example.myapplication.okhttp.OKHttpActivity;
 
 
 public class SecondActivity extends AppCompatActivity {
 
-    private Button mBtn_web,mBtn_ui,mBtn_Ev,mBtn_DataStorage,mBtn_http;
+    private Button mBtn_web,mBtn_ui,mBtn_Ev,mBtn_DataStorage,mBtn_http,mBtn_MD;
     private TextView mTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class SecondActivity extends AppCompatActivity {
         mBtn_Ev=findViewById(R.id.button_ev);
         mBtn_DataStorage=findViewById(R.id.button_data);
         mBtn_http=findViewById(R.id.button_okhttp);
+        mBtn_MD=findViewById(R.id.button_MaterialDesign);
         SetListenner();
 
     }
@@ -43,6 +45,7 @@ public class SecondActivity extends AppCompatActivity {
         mBtn_Ev.setOnClickListener(onClick);
         mBtn_DataStorage.setOnClickListener(onClick);
         mBtn_http.setOnClickListener(onClick);
+        mBtn_MD.setOnClickListener(onClick);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -83,6 +86,10 @@ public class SecondActivity extends AppCompatActivity {
                     break;
                 case R.id.button_okhttp:
                     intent = new Intent(SecondActivity.this, OKHttpActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_MaterialDesign:
+                    intent = new Intent(SecondActivity.this, MaterialDesignActivity.class);
                     startActivity(intent);
                     break;
             }

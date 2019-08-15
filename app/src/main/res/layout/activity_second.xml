@@ -47,6 +47,16 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/bg_btn4"
         />
+    <Button
+        android:id="@+id/button_MaterialDesign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MaterialDesignUI"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn4"
+        />
     <TextView
         android:id="@+id/name_first"
         android:layout_width="wrap_content"
