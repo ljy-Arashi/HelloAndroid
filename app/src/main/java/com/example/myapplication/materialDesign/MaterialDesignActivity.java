@@ -3,6 +3,7 @@ package com.example.myapplication.materialDesign;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,12 +16,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myapplication.R;
 import com.example.myapplication.util.ToastUtil;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 public class MaterialDesignActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
+    FloatingActionButton mFloatingActionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,7 @@ public class MaterialDesignActivity extends AppCompatActivity {
         Toolbar toolbar=findViewById(R.id.ui_toolbar);
         mDrawerLayout =findViewById(R.id.drawer_layout);
         mNavigationView=findViewById(R.id.nav_view);
+        mFloatingActionButton=findViewById(R.id.fab);
         toolbar.setTitle("FaceBook");//设置标题
         toolbar.setLogo(R.drawable.facebook_logo);//设置logo
         //toolbar.setSubtitle("by Arashi");//设置副标题
@@ -65,6 +69,12 @@ public class MaterialDesignActivity extends AppCompatActivity {
                 }
                 mDrawerLayout.closeDrawers();//将滑动菜单关闭
                 return true;
+            }
+        });
+        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToastUtil.showMsg(MaterialDesignActivity.this,"喜欢");
             }
         });
     }

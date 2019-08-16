@@ -15,6 +15,21 @@
             android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/like_fab_button"
+            app:borderWidth="0dp"
+            app:rippleColor="#FFB5C5"
+            app:backgroundTint="#ffffffff"
+            app:elevation="8dp"
+            app:fabSize="mini"
+            app:pressedTranslationZ="16dp"
+            android:focusable="true"
+            android:clickable="true"/>
     </FrameLayout>
     <!--下面是第二个子控件 用DrawerLayout实现滑动切换layout_gravity这个属性是必须指定的，
     因为我们需要告诉DrawerLayout滑动菜单是在屏幕的左边还是右边，
@@ -37,4 +52,5 @@
         app:menu="@menu/nav_menu"
         app:headerLayout="@layout/navi_header"
         />
+
 </androidx.drawerlayout.widget.DrawerLayout>
