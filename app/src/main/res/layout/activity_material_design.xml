@@ -22,11 +22,19 @@
     这里我指定了start，表示会根据系统语言进行判断，如果系统语言是从左往右的，
     比如英语、汉语，滑动菜单就在左边，
     如果系统语言是从右往左的，比如阿拉伯语，滑动菜单就在右边。-->
-    <TextView
+    <!--TextView  TextView换成了NavigationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:text="这是滑动的另一个控件"
         android:textSize="30sp"
-        android:background="#FFF" />
+        android:background="#FFF" -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/nav_menu"
+        app:headerLayout="@layout/navi_header"
+        />
 </androidx.drawerlayout.widget.DrawerLayout>
