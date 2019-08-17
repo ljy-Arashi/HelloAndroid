@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <FrameLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <androidx.appcompat.widget.Toolbar
@@ -30,7 +30,7 @@
             app:pressedTranslationZ="16dp"
             android:focusable="true"
             android:clickable="true"/>
-    </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
     <!--下面是第二个子控件 用DrawerLayout实现滑动切换layout_gravity这个属性是必须指定的，
     因为我们需要告诉DrawerLayout滑动菜单是在屏幕的左边还是右边，
     指定left表示滑动菜单在左边，指定right表示滑动菜单在右边。

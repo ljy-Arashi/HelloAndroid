@@ -1,9 +1,12 @@
 package com.example.myapplication.materialDesign;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,9 +18,12 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myapplication.R;
+import com.example.myapplication.util.SnackBarUtil;
 import com.example.myapplication.util.ToastUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MaterialDesignActivity extends AppCompatActivity {
 
@@ -74,7 +80,48 @@ public class MaterialDesignActivity extends AppCompatActivity {
         mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ToastUtil.showMsg(MaterialDesignActivity.this,"喜欢");
+               // ToastUtil.showMsg(MaterialDesignActivity.this,"喜欢");
+                //SnackBar和Toast类似，但是点击显示后会遮挡FloatingActionButton，所以FrameLayout布局要换成CoordinatorLayout
+                /*
+                 * CoordinatorLayout可以协调其它控件并实现控件之间的联动。
+                 * 通过在其直接子View上设置behavior来实现子View的不同交互效果。一般作为一个界面的根布局，来协调AppbarLayout，ToolBarLayout以及ScrollView之间的联动
+                 */
+                final Snackbar sb=Snackbar.make(view,"关注他吗？",Snackbar.LENGTH_SHORT);
+                       View viewSnack = sb.getView();
+                       TextView tv = viewSnack.findViewById(R.id.snackbar_text);//获取Snackbar的layout中的控件
+                //在其textView里面加图片，也可以通过自定义的SnackBarUtil添加一个ImageView控件
+                       Drawable d = ContextCompat.getDrawable(MaterialDesignActivity.this, R.drawable.info_attention);
+                       d.setBounds(0, 0, d.getMinimumWidth(), d.getMinimumHeight());
+                       tv.setCompoundDrawables(d, null, null, null); // 给TextView左边添加图标
+                       tv.setGravity(Gravity.CENTER); // 让文字居中
+                        //设置与用户的交互行为 不能设置多个action，否则会被覆盖
+                        sb.setAction("关注", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                ToastUtil.showMsg(MaterialDesignActivity.this,"已关注");
+                            }
+                        })
+                                //添加出现和消失监听
+                                .addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+                                    @Override
+                                    public void onDismissed(Snackbar transientBottomBar, int event) {
+                                        ToastUtil.showMsg(MaterialDesignActivity.this,"消失");
+                                    }
+
+                                    @Override
+                                    public void onShown(Snackbar transientBottomBar) {
+                                        ToastUtil.showMsg(MaterialDesignActivity.this,"显示");
+                                    }
+                                })
+                                .show();//需要show一下
+                //自定义SnackBar添加一个action和按钮
+                SnackBarUtil.addViewToSnackbar(sb,R.layout.mysnackbar,1);
+                SnackBarUtil.setAction(sb, R.id.snackbar_cancel_btn, "取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        sb.dismiss();//消失
+                    }
+                });
             }
         });
     }
