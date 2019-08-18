@@ -16,6 +16,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.util.SnackBarUtil;
@@ -25,19 +27,34 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MaterialDesignActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     FloatingActionButton mFloatingActionButton;
+    private RecyclerView mRecyclerView;
+    private List<Fruit> mFruitList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_material_design);
+        DataInit();
         Toolbar toolbar=findViewById(R.id.ui_toolbar);
         mDrawerLayout =findViewById(R.id.drawer_layout);
         mNavigationView=findViewById(R.id.nav_view);
         mFloatingActionButton=findViewById(R.id.fab);
+        mRecyclerView=findViewById(R.id.recycler_view);
+        //设置GridLayout 2列
+        mRecyclerView.setLayoutManager(new GridLayoutManager(MaterialDesignActivity.this,2));
+        mRecyclerView.setAdapter(new FruitAdapter(MaterialDesignActivity.this, mFruitList, new FruitAdapter.OnItemClickListener() {
+            @Override
+            public void OnClick(int i) {
+                ToastUtil.showMsg(MaterialDesignActivity.this,mFruitList.get(i).getName());
+            }
+        }));
         toolbar.setTitle("FaceBook");//设置标题
         toolbar.setLogo(R.drawable.facebook_logo);//设置logo
         //toolbar.setSubtitle("by Arashi");//设置副标题
@@ -125,7 +142,33 @@ public class MaterialDesignActivity extends AppCompatActivity {
             }
         });
     }
-
+    private void DataInit(){
+        mFruitList=new ArrayList<>();
+        Fruit fruit1=new Fruit("Apple",R.drawable.apple);
+        Fruit fruit2=new Fruit("Banana",R.drawable.banana);
+        Fruit fruit3=new Fruit("Grape",R.drawable.grape);
+        Fruit fruit4=new Fruit("Orange",R.drawable.orange);
+        Fruit fruit5=new Fruit("Strawberry",R.drawable.strawberry);
+        Fruit fruit6=new Fruit("Watermelon",R.drawable.watermelon);
+        Fruit fruit7=new Fruit("Peach",R.drawable.peach);
+        Fruit fruit8=new Fruit("Cherry",R.drawable.cherry);
+        Fruit fruit9=new Fruit("Pear",R.drawable.pear);
+        Fruit fruit10=new Fruit("Mango",R.drawable.mango);
+        Fruit fruit11=new Fruit("PineApple",R.drawable.pineapple);
+        Fruit fruit12=new Fruit("Kiwi",R.drawable.kiwi);
+        mFruitList.add(fruit1);
+        mFruitList.add(fruit2);
+        mFruitList.add(fruit3);
+        mFruitList.add(fruit4);
+        mFruitList.add(fruit5);
+        mFruitList.add(fruit6);
+        mFruitList.add(fruit7);
+        mFruitList.add(fruit8);
+        mFruitList.add(fruit9);
+        mFruitList.add(fruit10);
+        mFruitList.add(fruit11);
+        mFruitList.add(fruit12);
+    }
     //添加menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
