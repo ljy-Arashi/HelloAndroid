@@ -48,7 +48,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
         Fruit fruit=mFruitList.get(position);
         holder.fruitName.setText(fruit.getName());
         Glide.with(mContext).load(fruit.getImageId()).into(holder.fruitImage);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mOnItemClickListener.OnClick(position);

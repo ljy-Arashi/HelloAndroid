@@ -7,6 +7,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <!--AppBarLayout 解决RecyclerView遮挡Toolbar的问题-->
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -27,8 +28,10 @@
             Toolbar会跟着一起向下滚动并重新显示
             。snap表示当Toolbar还没有完全隐藏或显示的时候，会根据当前滚动的距离，自动选择是隐藏还是显示。-->
         </com.google.android.material.appbar.AppBarLayout>
-        <!--那么在MaterialTest项目中，应该支持下拉刷新功能的控件自然就是RecyclerView了/listView也可以-->
+        <!--那么在MaterialTest项目中，应该支持下拉刷新功能的控件自然就是RecyclerView了/listView也可以
+        appbar_scrolling_view_behavior作用是让使用这个属性的View在appbar下面滚动。而B-->
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swiper_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">

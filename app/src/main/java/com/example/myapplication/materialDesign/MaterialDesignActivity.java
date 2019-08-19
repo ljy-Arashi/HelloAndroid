@@ -1,5 +1,6 @@
 package com.example.myapplication.materialDesign;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -18,6 +19,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.myapplication.R;
 import com.example.myapplication.util.SnackBarUtil;
@@ -37,6 +39,8 @@ public class MaterialDesignActivity extends AppCompatActivity {
     FloatingActionButton mFloatingActionButton;
     private RecyclerView mRecyclerView;
     private List<Fruit> mFruitList;
+    private FruitAdapter mFruitAdapter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,14 +51,38 @@ public class MaterialDesignActivity extends AppCompatActivity {
         mNavigationView=findViewById(R.id.nav_view);
         mFloatingActionButton=findViewById(R.id.fab);
         mRecyclerView=findViewById(R.id.recycler_view);
+        mSwipeRefreshLayout=findViewById(R.id.swiper_refresh);
+        //下拉刷新的圆圈是否显示
+        mSwipeRefreshLayout.setRefreshing(false);
+        //设置下拉时圆圈的颜色（可以由多种颜色拼成）
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+//        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
+//                android.R.color.holo_red_light,
+//                android.R.color.holo_orange_light);
+        //设置下拉时圆圈的背景颜色（这里设置成白色）
+        mSwipeRefreshLayout.setProgressBackgroundColorSchemeResource(android.R.color.white);
+        //下拉监听事件
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //通常情况下，onRefresh()方法中应该是去网络上请求最新的数据，然后再将这些数据展示出来。这里简单起见调用refreshFruits()方法进行本地刷新操作
+                refreshFruits();
+            }
+        });
         //设置GridLayout 2列
         mRecyclerView.setLayoutManager(new GridLayoutManager(MaterialDesignActivity.this,2));
-        mRecyclerView.setAdapter(new FruitAdapter(MaterialDesignActivity.this, mFruitList, new FruitAdapter.OnItemClickListener() {
+        mFruitAdapter=new FruitAdapter(MaterialDesignActivity.this, mFruitList, new FruitAdapter.OnItemClickListener() {
             @Override
             public void OnClick(int i) {
-                ToastUtil.showMsg(MaterialDesignActivity.this,mFruitList.get(i).getName());
+                Fruit fruit = mFruitList.get(i);
+                Intent intent = new Intent(MaterialDesignActivity.this, FruitDetailActivity.class);
+                intent.putExtra(FruitDetailActivity.FRUIT_NAME, fruit.getName());
+                intent.putExtra(FruitDetailActivity.FRUIT_IMAGE_ID, fruit.getImageId());
+                startActivity(intent);
+               // ToastUtil.showMsg(MaterialDesignActivity.this,mFruitList.get(i).getName());
             }
-        }));
+        });
+        mRecyclerView.setAdapter(mFruitAdapter);
         toolbar.setTitle("FaceBook");//设置标题
         toolbar.setLogo(R.drawable.facebook_logo);//设置logo
         //toolbar.setSubtitle("by Arashi");//设置副标题
@@ -168,6 +196,28 @@ public class MaterialDesignActivity extends AppCompatActivity {
         mFruitList.add(fruit10);
         mFruitList.add(fruit11);
         mFruitList.add(fruit12);
+    }
+    private void refreshFruits() {
+        //为了到刷新的过程，用线程睡眠2秒
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //将线程切换回主线程，然后调用DataInit()方法重新生成水果数据，
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        DataInit();
+                        mFruitAdapter.notifyDataSetChanged();//通过一个外部的方法控制如果适配器的内容改变时需要强制调用getView来刷新每个Item的内容。
+                        mSwipeRefreshLayout.setRefreshing(false);//下用于表示刷新事件结束，并隐藏刷新进度条圆圈。
+                    }
+                });
+            }
+        }).start();
     }
     //添加menu
     @Override
