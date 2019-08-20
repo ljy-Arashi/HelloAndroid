@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--它继承了AppTheme中的所有特性。然后我们在FruitActivityTheme中将状态栏的颜色指定成透明色，
+    由于values-v21目录是只有Android 5.0及以上的系统才会去读取的，因此这么声明是没有问题的。
+但是Android 5.0之前的系统却无法识别FruitActivityTheme这个主题，因此我们还需要对values/styles.xml文件进行修改
+最后，我们还需要让FruitActivity使用这个主题才可以，修改AndroidManifest.xml中的代码android:theme="@style/FruitActivityTheme">-->
+    <style name="FruitActivityTheme" parent="AppTheme">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>

@@ -2,11 +2,18 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+    <!--想要让背景图能够和系统状态栏融合，需要借助android:fitsSystemWindows这个属性来实现。
+    在CoordinatorLayout、AppBarLayout、CollapsingToolbarLayout这种嵌套结构的布局中，将控件的android:fitsSystemWindows属性指定成true，
+    就表示该控件会出现在系统状态栏里。对应到我们的程序，那就是水果标题栏中的ImageView应该设置这个属性了。不过只给ImageView设置这个属性是没有用的，
+    我们必须将ImageView布局结构中的所有父布局都设置上这个属性才可以 该属性的生效条件是只有在设置了透明状态栏(StatusBar)或者导航栏(NavigationBar)此属性才会生效。
+    这里我设了透明状态栏-->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="250dp"
+        android:fitsSystemWindows="true">
         <!--CollapsingToolbarLayout是一个作用于Toolbar基础之上的布局
         CollapsingToolbarLayout是不能独立存在的，它在设计的时候就被限定只能作为AppBarLayout的直接子布局来使用。
         而AppBarLayout又必须是CoordinatorLayout的子布局-->
@@ -16,6 +23,7 @@
             android:layout_height="match_parent"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:contentScrim="?attr/colorPrimary"
+            android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
         <!--contentScrim属性用于指定CollapsingToolbarLayout在趋于折叠状态以及折叠之后的背景色
         app:layout_scrollFlags属性我们也是见过的，只不过之前是给Toolbar指定的，现在也移到外面来了
@@ -26,7 +34,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax" />
+                app:layout_collapseMode="parallax"
+                android:fitsSystemWindows="true"/>
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/fruit_toolBar"
                 android:layout_width="match_parent"
