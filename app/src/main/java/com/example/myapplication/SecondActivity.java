@@ -14,11 +14,12 @@ import android.widget.Toast;
 import com.example.myapplication.datastorage.DataStorageActivity;
 import com.example.myapplication.materialDesign.MaterialDesignActivity;
 import com.example.myapplication.okhttp.OKHttpActivity;
+import com.example.myapplication.retrofit.RetrofitActivity;
 
 
 public class SecondActivity extends AppCompatActivity {
 
-    private Button mBtn_web,mBtn_ui,mBtn_Ev,mBtn_DataStorage,mBtn_http,mBtn_MD;
+    private Button mBtn_web,mBtn_ui,mBtn_Ev,mBtn_DataStorage,mBtn_http,mBtn_MD,mBtn_retrofit;
     private TextView mTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class SecondActivity extends AppCompatActivity {
         mBtn_DataStorage=findViewById(R.id.button_data);
         mBtn_http=findViewById(R.id.button_okhttp);
         mBtn_MD=findViewById(R.id.button_MaterialDesign);
+        mBtn_retrofit=findViewById(R.id.button_retrofit);
         SetListenner();
 
     }
@@ -46,9 +48,11 @@ public class SecondActivity extends AppCompatActivity {
         mBtn_DataStorage.setOnClickListener(onClick);
         mBtn_http.setOnClickListener(onClick);
         mBtn_MD.setOnClickListener(onClick);
+        mBtn_retrofit.setOnClickListener(onClick);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case 1:
                 if (resultCode == RESULT_OK) {
@@ -90,6 +94,10 @@ public class SecondActivity extends AppCompatActivity {
                     break;
                 case R.id.button_MaterialDesign:
                     intent = new Intent(SecondActivity.this, MaterialDesignActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_retrofit:
+                    intent = new Intent(SecondActivity.this, RetrofitActivity.class);
                     startActivity(intent);
                     break;
             }
