@@ -12,14 +12,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.materialDesign.MaterialDesignActivity;
+import com.example.myapplication.notification.NotificationActivity;
 import com.example.myapplication.okhttp.OKHttpActivity;
 import com.example.myapplication.retrofit.RetrofitActivity;
+import com.example.myapplication.service.StartServiceActivity;
 import com.example.myapplication.thread.ThreadActivity;
 
 
 public class SecondActivity extends AppCompatActivity {
 
-    private Button mBtn_web,mBtn_ui,mBtn_Ev,mBtn_DataStorage,mBtn_http,mBtn_MD,mBtn_retrofit,mBtn_activity;
+    private Button mBtn_web,mBtn_ui,mBtn_Ev,mBtn_DataStorage,mBtn_http,mBtn_MD,mBtn_retrofit,mBtn_activity,mBtn_service,mBtn_notification;
     private TextView mTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class SecondActivity extends AppCompatActivity {
         mBtn_MD=findViewById(R.id.button_MaterialDesign);
         mBtn_retrofit=findViewById(R.id.button_retrofit);
         mBtn_activity=findViewById(R.id.button_activity);
+        mBtn_service=findViewById(R.id.button_service);
+        mBtn_notification=findViewById(R.id.button_notification);
         SetListenner();
 
     }
@@ -51,6 +55,8 @@ public class SecondActivity extends AppCompatActivity {
         mBtn_MD.setOnClickListener(onClick);
         mBtn_retrofit.setOnClickListener(onClick);
         mBtn_activity.setOnClickListener(onClick);
+        mBtn_service.setOnClickListener(onClick);
+        mBtn_notification.setOnClickListener(onClick);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -104,6 +110,14 @@ public class SecondActivity extends AppCompatActivity {
                     break;
                 case R.id.button_activity:
                     intent = new Intent(SecondActivity.this, ThreadActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_service:
+                    intent = new Intent(SecondActivity.this, StartServiceActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_notification:
+                    intent = new Intent(SecondActivity.this, NotificationActivity.class);
                     startActivity(intent);
                     break;
             }

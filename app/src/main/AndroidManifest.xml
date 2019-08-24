@@ -5,7 +5,7 @@
     <!-- 加载网络图片必须要有权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.VIBRATE" />
     <application
         android:name=".imageload.MyApplication"
         android:allowBackup="true"
@@ -14,6 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".notification.NotiContenActivity"></activity>
+        <activity android:name=".notification.NotificationActivity" />
+        <activity android:name=".service.StartServiceActivity" />
+
+        <service
+            android:name=".service.MyService"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity android:name=".thread.ThreadActivity" />
         <activity android:name=".retrofit.RetrofitActivity" />
         <activity

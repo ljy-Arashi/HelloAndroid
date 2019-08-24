@@ -77,6 +77,26 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/bg_btn4"
         />
+    <Button
+        android:id="@+id/button_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notification通知"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn4"
+        />
+    <Button
+        android:id="@+id/button_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="启动service服务"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn4"
+        />
     <TextView
         android:id="@+id/name_first"
         android:layout_width="wrap_content"
