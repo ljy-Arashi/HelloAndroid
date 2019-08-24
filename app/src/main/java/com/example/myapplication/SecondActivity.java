@@ -1,8 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,15 +8,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.datastorage.DataStorageActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.myapplication.materialDesign.MaterialDesignActivity;
 import com.example.myapplication.okhttp.OKHttpActivity;
 import com.example.myapplication.retrofit.RetrofitActivity;
+import com.example.myapplication.thread.ThreadActivity;
 
 
 public class SecondActivity extends AppCompatActivity {
 
-    private Button mBtn_web,mBtn_ui,mBtn_Ev,mBtn_DataStorage,mBtn_http,mBtn_MD,mBtn_retrofit;
+    private Button mBtn_web,mBtn_ui,mBtn_Ev,mBtn_DataStorage,mBtn_http,mBtn_MD,mBtn_retrofit,mBtn_activity;
     private TextView mTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class SecondActivity extends AppCompatActivity {
         mBtn_http=findViewById(R.id.button_okhttp);
         mBtn_MD=findViewById(R.id.button_MaterialDesign);
         mBtn_retrofit=findViewById(R.id.button_retrofit);
+        mBtn_activity=findViewById(R.id.button_activity);
         SetListenner();
 
     }
@@ -49,6 +50,7 @@ public class SecondActivity extends AppCompatActivity {
         mBtn_http.setOnClickListener(onClick);
         mBtn_MD.setOnClickListener(onClick);
         mBtn_retrofit.setOnClickListener(onClick);
+        mBtn_activity.setOnClickListener(onClick);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -98,6 +100,10 @@ public class SecondActivity extends AppCompatActivity {
                     break;
                 case R.id.button_retrofit:
                     intent = new Intent(SecondActivity.this, RetrofitActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_activity:
+                    intent = new Intent(SecondActivity.this, ThreadActivity.class);
                     startActivity(intent);
                     break;
             }

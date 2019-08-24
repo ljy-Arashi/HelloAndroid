@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="10dp">
+    <Button
+        android:id="@+id/change_handlerMess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Handler Message" />
+
+    <TextView
+        android:id="@+id/thread_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Hello world"
+        android:textSize="20sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorBlack"
+        android:layout_marginTop="20dp"/>
+    
+    <Button
+        android:id="@+id/async_button"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点我加载"/>
+
+    <TextView
+        android:id="@+id/async_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="还没开始加载!" />
+
+    <ProgressBar
+        android:id="@+id/async_progress_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:progress="0"
+        android:max="100"
+        style="?android:attr/progressBarStyleHorizontal"/>
+
+    <Button
+        android:id="@+id/async_cancel"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cancel"/>
+
+</LinearLayout>

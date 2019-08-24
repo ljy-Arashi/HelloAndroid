@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".retrofit.RetrofitActivity"></activity>
+        <activity android:name=".thread.ThreadActivity" />
+        <activity android:name=".retrofit.RetrofitActivity" />
         <activity
             android:name=".materialDesign.FruitDetailActivity"
             android:theme="@style/FruitActivityTheme" />
