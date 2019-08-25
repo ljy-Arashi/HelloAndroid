@@ -17,11 +17,13 @@ import com.example.myapplication.okhttp.OKHttpActivity;
 import com.example.myapplication.retrofit.RetrofitActivity;
 import com.example.myapplication.service.StartServiceActivity;
 import com.example.myapplication.thread.ThreadActivity;
+import com.example.myapplication.uploadphoto.UploadPhotoActivity;
 
 
 public class SecondActivity extends AppCompatActivity {
 
     private Button mBtn_web,mBtn_ui,mBtn_Ev,mBtn_DataStorage,mBtn_http,mBtn_MD,mBtn_retrofit,mBtn_activity,mBtn_service,mBtn_notification;
+    private Button mBtn_upload_photo;
     private TextView mTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
         Intent intent = getIntent();
         String data = intent.getStringExtra("extra_data");//接收来自mainActivity Intent的数据
-        mBtn_web = (Button) findViewById(R.id.button_2);
+        mBtn_web = findViewById(R.id.button_2);
         mTv =findViewById(R.id.name_first);
         mTv.append(","+data);
         mBtn_ui= findViewById(R.id.button_ui);
@@ -41,6 +43,7 @@ public class SecondActivity extends AppCompatActivity {
         mBtn_activity=findViewById(R.id.button_activity);
         mBtn_service=findViewById(R.id.button_service);
         mBtn_notification=findViewById(R.id.button_notification);
+        mBtn_upload_photo=findViewById(R.id.button_upload_photo);
         SetListenner();
 
     }
@@ -57,6 +60,7 @@ public class SecondActivity extends AppCompatActivity {
         mBtn_activity.setOnClickListener(onClick);
         mBtn_service.setOnClickListener(onClick);
         mBtn_notification.setOnClickListener(onClick);
+        mBtn_upload_photo.setOnClickListener(onClick);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -118,6 +122,10 @@ public class SecondActivity extends AppCompatActivity {
                     break;
                 case R.id.button_notification:
                     intent = new Intent(SecondActivity.this, NotificationActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_upload_photo:
+                    intent = new Intent(SecondActivity.this, UploadPhotoActivity.class);
                     startActivity(intent);
                     break;
             }

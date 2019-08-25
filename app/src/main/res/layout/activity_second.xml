@@ -1,8 +1,12 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <Button
         android:id="@+id/button_2"
         android:layout_width="match_parent"
@@ -97,6 +101,16 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/bg_btn4"
         />
+    <Button
+        android:id="@+id/button_upload_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="上传拍照或者相册照片"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn4"
+        />
     <TextView
         android:id="@+id/name_first"
         android:layout_width="wrap_content"
@@ -105,6 +119,5 @@
         android:layout_marginTop="20dp"
         android:text="@string/screen2"
         android:textSize="11pt" />
-
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

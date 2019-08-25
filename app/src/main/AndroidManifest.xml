@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".imageload.MyApplication"
         android:allowBackup="true"
@@ -14,7 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".notification.NotiContenActivity"></activity>
+        <!--拍摄照片/从相册中选择上传-->
+        <provider
+        android:name="androidx.core.content.FileProvider"
+        android:authorities="com.example.myapplication.uploadphoto"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/file_paths" />
+        </provider>
+        <activity android:name=".uploadphoto.UploadPhotoActivity"></activity>
+        <activity android:name=".notification.NotiContenActivity" />
         <activity android:name=".notification.NotificationActivity" />
         <activity android:name=".service.StartServiceActivity" />
 
