@@ -19,6 +19,16 @@
         android:layout_height="wrap_content"
         android:onClick="OnGetDataWithMap"
         android:text="Get数据带参数Map" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="OnPostData"
+        android:text="Post数据" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="OnPostDataWithMap"
+        android:text="Post数据带参数Map" />
     <TextView
         android:id="@+id/tv_retro"
         android:layout_width="wrap_content"

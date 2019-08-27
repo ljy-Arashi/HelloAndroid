@@ -103,4 +103,62 @@ public class RetrofitActivity extends AppCompatActivity {
            }
        });
    }
+
+   public void OnPostData(View view){
+       //1.创建Retrofit对象
+       Retrofit retrofit = new Retrofit.Builder()
+               .baseUrl(BASE_URL)
+               .addConverterFactory(GsonConverterFactory.create())
+               .build();
+
+       //2.获取MyServer接口服务对象
+       IArashiService arashiService = retrofit.create(IArashiService.class);
+
+       //3.获取Call对象
+       //方式一
+       Call<ArashiMember> call1 = arashiService.postData("22");
+       //4.Call对象执行请求
+       call1.enqueue(new Callback<ArashiMember>() {
+           @Override
+           public void onResponse(Call<ArashiMember> call, Response<ArashiMember> response) {
+               arashiMember=new ArashiMember(response.body().status,response.body().User,response.body().Pass);
+               mTv.setText(arashiMember.User);
+           }
+
+           @Override
+           public void onFailure(Call<ArashiMember> call, Throwable t) {
+               System.out.println("failed");
+           }
+       });
+   }
+
+   public void OnPostDataWithMap(View view){
+       //1.创建Retrofit对象
+       Retrofit retrofit = new Retrofit.Builder()
+               .baseUrl(BASE_URL)
+               .addConverterFactory(GsonConverterFactory.create())
+               .build();
+
+       //2.获取MyServer接口服务对象
+       IArashiService arashiService = retrofit.create(IArashiService.class);
+
+       //3.获取Call对象
+       //方式二
+       Map<String,String> map=new HashMap<>();
+       map.put("user","22");
+       Call<ArashiMember> call1 = arashiService.postData2(map);
+       //4.Call对象执行请求
+       call1.enqueue(new Callback<ArashiMember>() {
+           @Override
+           public void onResponse(Call<ArashiMember> call, Response<ArashiMember> response) {
+               arashiMember=new ArashiMember(response.body().status,response.body().User,response.body().Pass);
+               mTv.setText(arashiMember.User);
+           }
+
+           @Override
+           public void onFailure(Call<ArashiMember> call, Throwable t) {
+               System.out.println("failed");
+           }
+       });
+   }
 }

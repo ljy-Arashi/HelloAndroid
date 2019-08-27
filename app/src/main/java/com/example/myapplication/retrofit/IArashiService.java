@@ -3,7 +3,11 @@ package com.example.myapplication.retrofit;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -19,6 +23,15 @@ public interface IArashiService {
     //携带请求参数的 Get 请求
     @GET("liujiayan/test/Login")
     Call<ArashiMember> getWithMap(@QueryMap Map<String, String> map);
+
+    @POST("liujiayan/test/Login") //Post请求发送数据
+    @FormUrlEncoded
+    Call<ArashiMember> postData(@Field("user") String user);
+
+    @POST("liujiayan/test/Login")
+    @FormUrlEncoded
+    Call<ArashiMember> postData2(@FieldMap Map<String,String> map);
+
 //
 //    //携带请求参数以及固定请求头的 Get 请求
 //    @GET("Get/getString")
