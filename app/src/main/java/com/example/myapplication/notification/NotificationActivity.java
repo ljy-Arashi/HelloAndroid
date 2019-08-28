@@ -35,7 +35,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
             case R.id.send_notice:
                 //用意图传入了NotiContenActivity
                 Intent intent=new Intent(this,NotiContenActivity.class);
-                /**第四个参数用于确定PendingIntent的行为，4种值
+                /**第四个参数flags用于确定PendingIntent的行为，4种值
                  * FLAG_CANCEL_CURRENT:如果当前系统中已经存在一个相同的 PendingIntent 对象，那么就将先将已有的 PendingIntent 取消，然后重新生成一个 PendingIntent 对象。
                  * FLAG_NO_CREATE:如果当前系统中不存在相同的 PendingIntent 对象，系统将不会创建该 PendingIntent 对象而是直接返回 null 。
                  * FLAG_ONE_SHOT:该 PendingIntent 只作用一次。

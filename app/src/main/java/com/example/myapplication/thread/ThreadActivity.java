@@ -63,6 +63,15 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
                 并在handleMessage()方法中对它进行处理。
                  注意此时handleMessage()方法中的代码就是在主线程当中运行的了，所以我们可以放心地在这里进行UI操作
                  */
+                //mText.setText("Nice to meet you");//这样也可以 因为都在主线程中
+                //但是这样 在子线程中更新UI就会报错
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mText.setText("Nice to meet you");
+//                    }
+//                }).start();
+                //必须使用下面这个方法 用handler message或者runOnUiThread来操作
                 new Thread(new Runnable() {
                     @Override
                     public void run() {

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,7 +15,7 @@ import com.example.myapplication.R;
 
 public class StartServiceActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mBtn_StartService,mBtn_StopService,mBtn_BindService,mBtn_UnBindService;
+    private Button mBtn_StartService,mBtn_StopService,mBtn_BindService,mBtn_UnBindService,mBtn_IntentService;
 
     private MyService.DownloadBinder downloadBinder;
 
@@ -37,12 +38,14 @@ public class StartServiceActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_start_service);
         mBtn_StartService=findViewById(R.id.start_service);
         mBtn_StopService=findViewById(R.id.stop_service);
+        mBtn_IntentService=findViewById(R.id.start_intent_service);
         mBtn_StartService.setOnClickListener(this);
         mBtn_StopService.setOnClickListener(this);
         mBtn_BindService = findViewById(R.id.bind_service);
         mBtn_UnBindService =  findViewById(R.id.unbind_service);
         mBtn_BindService.setOnClickListener(this);
         mBtn_UnBindService.setOnClickListener(this);
+        mBtn_IntentService.setOnClickListener(this);
     }
 
     @Override
@@ -66,6 +69,13 @@ public class StartServiceActivity extends AppCompatActivity implements View.OnCl
                 /**解绑服务会执行MyService的onDestroy()方法，一个服务既调用了startService()方法，
                  * 又调用了bindService()方法的，这种情况下要同时调用stopService()和unbindService()方法，onDestroy()方法才会执行。*/
                 unbindService(connection);
+                break;
+            case R.id.start_intent_service:
+                // 打印主线程的id
+                Log.d("MainActivity", "Thread id is " + Thread.currentThread().getId());
+                //启动MyIntentService这个服务
+                Intent intentService = new Intent(this, MyIntentService.class);
+                startService(intentService);//<service android:name=".service.MyIntentService" /> Manifest里面注册
                 break;
             default:
                 break;
