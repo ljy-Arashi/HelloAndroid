@@ -15,20 +15,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--拍摄照片/从相册中选择上传-->
+        <activity android:name=".service.service.practice.ServicePracticeActivity"></activity>
+
+        <service
+            android:name=".service.service.practice.DownloadService"
+            android:enabled="true"
+            android:exported="true" /> <!-- 拍摄照片/从相册中选择上传 -->
         <provider
-        android:name="androidx.core.content.FileProvider"
-        android:authorities="com.example.myapplication.uploadphoto"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/file_paths" />
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.myapplication.uploadphoto"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
         </provider>
-        <activity android:name=".uploadphoto.UploadPhotoActivity"></activity>
+
+        <activity android:name=".uploadphoto.UploadPhotoActivity" />
         <activity android:name=".notification.NotiContenActivity" />
         <activity android:name=".notification.NotificationActivity" />
         <activity android:name=".service.StartServiceActivity" />
+
         <service android:name=".service.MyIntentService" />
         <service
             android:name=".service.MyService"

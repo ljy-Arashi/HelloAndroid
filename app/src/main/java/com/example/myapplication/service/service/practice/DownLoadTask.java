@@ -24,6 +24,7 @@ public class DownLoadTask extends AsyncTask<String,Integer,Integer> {
     private boolean isPaused = false;
     private int lastProgress;
 
+    /**一个字符串参数给后台任务；第二个泛型参数指定为Integer，表示使用整型数据来作为进度显示单位；第三个泛型参数指定为Integer，则表示使用整型数据来反馈执行结果。*/
     public DownLoadTask(DownLoadListener listener) {
         this.mListener = listener;
     }
@@ -46,14 +47,16 @@ public class DownLoadTask extends AsyncTask<String,Integer,Integer> {
         File file = null;
         try {
         long downloadedLength = 0; // 记录已下载的文件长度
-        String downloadUrl = params[0];
+        String downloadUrl = params[0];//从参数中获取到了下载的URL地址
+        // 并根据URL地址解析出了下载的文件名
         String fileName = downloadUrl.substring(downloadUrl.lastIndexOf("/"));
+        //SD卡的Download目录
         String directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
         file = new File(directory + fileName);
         if (file.exists()){
-            downloadedLength=file.length();
+            downloadedLength=file.length();//如果已经存在的话则读取已下载的字节数，这样就可以在后面启用断点续传的功能。
         }
-            long contentLength = getContentLength(downloadUrl);
+            long contentLength = getContentLength(downloadUrl);//下载总长度
             if (contentLength==0){
                 return TYPE_FAILED;
             }else if (contentLength==downloadedLength){
@@ -61,7 +64,7 @@ public class DownLoadTask extends AsyncTask<String,Integer,Integer> {
             }
             OkHttpClient client=new OkHttpClient();
             Request request=new Request.Builder()
-                    // 断点下载，指定从哪个字节开始下载
+                    // 断点下载， 请求中添加了一个header，用于告诉服务器我们想要从哪个字节开始下载，因为已下载过的部分就不需要再重新下载了
                     .addHeader("RANGE", "bytes=" + downloadedLength + "-")
                     .url(downloadUrl)
                     .build();
@@ -75,6 +78,7 @@ public class DownLoadTask extends AsyncTask<String,Integer,Integer> {
                 int total=0;
                 int len;
                 while ((len=is.read(bytes))!=-1){
+                    //在这个过程中，我们还要判断用户有没有触发暂停或者取消的操作
                     if (isCanceled){
                         return TYPE_CANCELED;
                     }else if (isPaused){
@@ -130,6 +134,7 @@ public class DownLoadTask extends AsyncTask<String,Integer,Integer> {
     // 注：根据需求复写
     @Override
     protected void onProgressUpdate(Integer... values) {
+        //从参数中获取到当前的下载进度，然后和上一次的下载进度进行对比，如果有变化的话则调用DownloadListener的onProgress()方法来通知下载进度更新。
         int progress = values[0];
         if (progress > lastProgress) {
             mListener.onProgress(progress);
