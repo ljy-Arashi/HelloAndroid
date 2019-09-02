@@ -13,6 +13,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**一个字符串参数给后台任务；第二个泛型参数指定为Integer，表示使用整型数据来作为进度显示单位；第三个泛型参数指定为Integer，则表示使用整型数据来反馈执行结果。*/
 public class DownLoadTask extends AsyncTask<String,Integer,Integer> {
     public static final int TYPE_SUCCESS = 0;
     public static final int TYPE_FAILED = 1;
@@ -24,7 +25,6 @@ public class DownLoadTask extends AsyncTask<String,Integer,Integer> {
     private boolean isPaused = false;
     private int lastProgress;
 
-    /**一个字符串参数给后台任务；第二个泛型参数指定为Integer，表示使用整型数据来作为进度显示单位；第三个泛型参数指定为Integer，则表示使用整型数据来反馈执行结果。*/
     public DownLoadTask(DownLoadListener listener) {
         this.mListener = listener;
     }
@@ -38,11 +38,12 @@ public class DownLoadTask extends AsyncTask<String,Integer,Integer> {
     }
 
     // 方法2：doInBackground（）
-    // 作用：接收输入参数、执行任务中的耗时操作、返回 线程任务执行的结果
+    // 作用：接收输入参数DownLoadTask.execute(参数);、执行任务中的耗时操作、返回 线程任务执行的结果
     //注：必须复写，从而自定义线程任务
     @Override
     protected Integer doInBackground(String... params) {
         InputStream is = null;
+        //RandomAccessFile类可以写入和读取文件，其最大的特点就是可以在任意位置读取文件(random access的意思)，是通过文件指针实现的。
         RandomAccessFile savedFile = null;
         File file = null;
         try {
@@ -72,8 +73,8 @@ public class DownLoadTask extends AsyncTask<String,Integer,Integer> {
             Response response=call.execute();
             if (response!=null){
                 is=response.body().byteStream();
-                savedFile=new RandomAccessFile(file,"rw");
-                savedFile.seek(downloadedLength);// 跳过已下载的字节
+                savedFile=new RandomAccessFile(file,"rw");//“rw”：以读、写方式打开，支持文件的读取或写入。若文件不存在，则创建之。
+                savedFile.seek(downloadedLength);// 跳过已下载的字节 将文件记录指针定位到下载的位置，继续下载后面内容
                 byte[] bytes=new byte[1024];
                 int total=0;
                 int len;

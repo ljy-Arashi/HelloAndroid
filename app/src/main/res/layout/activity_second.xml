@@ -101,6 +101,16 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/bg_btn4"
         />
+        <Button
+            android:id="@+id/button_servicePractice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="启动service服务练习"
+            android:textColor="#ffffff"
+            android:textAllCaps="false"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn4"
+            />
     <Button
         android:id="@+id/button_upload_photo"
         android:layout_width="match_parent"
