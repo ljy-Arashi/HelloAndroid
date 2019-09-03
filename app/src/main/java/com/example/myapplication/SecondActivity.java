@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.lbs.LBSActivity;
 import com.example.myapplication.materialDesign.MaterialDesignActivity;
 import com.example.myapplication.notification.NotificationActivity;
 import com.example.myapplication.okhttp.OKHttpActivity;
@@ -24,7 +25,7 @@ import com.example.myapplication.uploadphoto.UploadPhotoActivity;
 public class SecondActivity extends AppCompatActivity {
 
     private Button mBtn_web,mBtn_ui,mBtn_Ev,mBtn_DataStorage,mBtn_http,mBtn_MD,mBtn_retrofit,mBtn_activity,mBtn_service,mBtn_notification;
-    private Button mBtn_upload_photo,mBtn_button_servicePractice;
+    private Button mBtn_upload_photo,mBtn_button_servicePractice,mBtn_lbs;
     private TextView mTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class SecondActivity extends AppCompatActivity {
         mBtn_notification=findViewById(R.id.button_notification);
         mBtn_upload_photo=findViewById(R.id.button_upload_photo);
         mBtn_button_servicePractice=findViewById(R.id.button_servicePractice);
+        mBtn_lbs=findViewById(R.id.button_lbs);
         SetListenner();
 
     }
@@ -64,6 +66,7 @@ public class SecondActivity extends AppCompatActivity {
         mBtn_notification.setOnClickListener(onClick);
         mBtn_upload_photo.setOnClickListener(onClick);
         mBtn_button_servicePractice.setOnClickListener(onClick);
+        mBtn_lbs.setOnClickListener(onClick);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -133,6 +136,9 @@ public class SecondActivity extends AppCompatActivity {
                     break;
                 case R.id.button_servicePractice:
                     intent = new Intent(SecondActivity.this, ServicePracticeActivity.class);
+                    startActivity(intent);
+                case R.id.button_lbs:
+                    intent = new Intent(SecondActivity.this, LBSActivity.class);
                     startActivity(intent);
             }
         }
