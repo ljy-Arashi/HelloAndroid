@@ -1,8 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.first_layout);
         Log.i("MainActivity","onCreate end");
         Button button1 = (Button) findViewById(R.id.button_1);
+        Button button2=findViewById(R.id.button_rxjava);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +36,13 @@ public class MainActivity extends AppCompatActivity {
                // finish();//结束活动→关闭这个画面
             }
         });
-
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(MainActivity.this, .class);
+                //startActivity(intent);
+            }
+        });
     }
 
     @Override
