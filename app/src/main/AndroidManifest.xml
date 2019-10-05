@@ -6,16 +6,17 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".imageload.MyApplication"
@@ -25,17 +26,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--标签的android:name部分是固定的
-             android:value部分则应该填入我们在11.2节申请到的API Key-->
+        <activity android:name=".sqlite.SQLiteActivity"></activity>
+        <!--
+        标签的android:name部分是固定的
+             android:value部分则应该填入我们在11.2节申请到的API Key
+        -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="GK5H5BvQkNz0ZFyaMPlreopQ6HamDLjL" />
 
-        <activity android:name=".lbs.LBSActivity"></activity>
-        <activity android:name=".service.service.practice.ServicePracticeActivity" />
-        <!--还需要再注册一个LBS SDK中的服务，不用对这个服务的名字感到疑惑，因为百度LBS SDK中的代码都是混淆过的-->
-        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"/>
-
+        <activity android:name=".lbs.LBSActivity" />
+        <activity android:name=".service.service.practice.ServicePracticeActivity" /> <!-- 还需要再注册一个LBS SDK中的服务，不用对这个服务的名字感到疑惑，因为百度LBS SDK中的代码都是混淆过的 -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
         <service
             android:name=".service.service.practice.DownloadService"
             android:enabled="true"

@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.sqlite.SQLiteActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("MainActivity","onCreate end");
         Button button1 = (Button) findViewById(R.id.button_1);
         Button button2=findViewById(R.id.button_rxjava);
+        Button button3=findViewById(R.id.button_sqlite);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Intent intent = new Intent(MainActivity.this, .class);
                 //startActivity(intent);
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SQLiteActivity.class);
+                startActivity(intent);
             }
         });
     }

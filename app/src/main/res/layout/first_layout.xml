@@ -10,11 +10,19 @@
         android:background="@drawable/bg_btn4"
         />
     <Button
+        android:id="@+id/button_sqlite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="SQLite"
+        android:background="@drawable/bg_btn4"
+        />
+    <Button
         android:id="@+id/button_rxjava"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="RxJava"
+        android:text="RxJava还没写"
         android:background="@drawable/bg_btn4"
         />
 </LinearLayout>
